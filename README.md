@@ -1,93 +1,53 @@
-# Calculator
+### Introduction
 
+You made it! By now you should have a *really* firm grasp on the fundamentals of JavaScript. Of course there's plenty more to learn, but you should be able to create quite a bit at this point. Our final project is going to combine everything you've learned so far: you're going to make an on-screen calculator using JavaScript, HTML, and CSS.
 
+As usual with these things, there are elements of this project that are not going to be trivial for you, but if you've been following the course so far, you definitely have everything you need to finish it. We're going to walk you through the various steps you can take, but again, how you actually implement them is up to you!
 
-## Getting started
+### Warning
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+<div class="lesson-note" markdown="1">
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Before you get started with the project, we need to cover a word of warning. As you look into how to evaluate complex mathematical statements in JavaScript, you will likely come across the tantalizing [`eval()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval) function. However, this function can be very dangerous and MDN does a good job documenting why you should [never use eval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_direct_eval!)! You'll need to build your own functions to evaluate expressions as part of this project. On the same note, when researching how to calculate expressions, you may encounter solutions that suggest that you return a `new Function()` that evaluates a string. Similarly to `eval()`, this should not be used [due to potential pitfalls of evaluating insecure data](https://stackoverflow.com/questions/4599857/are-eval-and-new-function-the-same-thing). Besides, where's the fun in solutions that do all the work for you? Let's get to it!
 
-## Add your files
+</div>
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+### Assignment
 
-```
-cd existing_repo
-git remote add origin https://cfgitlabprd01v.psb.bls.gov/Bergmann_E/calculator.git
-git branch -M main
-git push -uf origin main
-```
+<div class="lesson-content__panel" markdown="1">
 
-## Integrate with your tools
+Don't forget to commit early & often! You can reference the [Commit Messages lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages) here!
 
-- [ ] [Set up project integrations](https://cfgitlabprd01v.psb.bls.gov/Bergmann_E/calculator/-/settings/integrations)
+Here are some use cases (expectations about your project):
 
-## Collaborate with your team
+1. Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser's console:
+   - add
+   - subtract
+   - multiply
+   - divide
+1. A calculator operation will consist of a number, an operator, and another number. For example, 3 + 5. Create three variables, one for each part of the operation. You'll use these variables to update your display later.
+1. Create a new function `operate` that takes an operator and two numbers and then calls one of the above functions on the numbers.
+1. Create a basic HTML calculator with buttons for each digit and operator (including `=`).
+   - Don't worry about making them functional just yet.
+   - There should also be a display for the calculator. Go ahead and fill it with some dummy numbers so it looks correct.
+   - Add a "clear" button.
+1. Create the functions that populate the display when you click the digit buttons. You should store the content of the display (the number) in a variable for use in the next step.
+1. Make the calculator work! You'll need to store the first and second numbers input by the user and then `operate()` on them when the user presses the `=` button, according to the operator that was selected between the numbers.
+   - You should already have the code that can populate the display, so once `operate` has been called, update the display with the result of the operation.
+   - This is the hardest part of the project. You need to figure out how to store all the values and call the `operate` function with them. Don't feel bad if it takes you a while to figure out the logic.
+1. Gotchas: watch out for and fix these bugs if they show up in your code:
+   - **Your calculator should not evaluate more than a single pair of numbers at a time.** Example: you enter a number (`12`), followed by an operator button (`+`), a second number button (`7`), and a second operator button (`-`). Your calculator should then do the following: first, evaluate the initial pair of numbers (`12 + 7`), then display the result of that calculation (`19`). Finally, use that result (`19`) as the first number in a new calculation, along with the next operator (`-`). An example of the behavior we're looking for can be seen in this [student's calculator live preview](https://G-O-T-W.github.io/calculator-app/).
+   - You should round answers with long decimals so that they don't overflow the display.
+   - Pressing `=` before entering all of the numbers or an operator could cause problems!
+   - Pressing "clear" should wipe out any existing data. Make sure the user is really starting fresh after pressing "clear".
+   - Display a snarky error message if the user tries to divide by 0... and don't let it crash your calculator!
+   - Make sure that your calculator only runs an operation when supplied with two numbers and an operator by the user. Example: you enter a number (`2`), followed by an operator button (`+`). You press the operator button (`+`) a second consecutive time. Your calculator should not evaluate this as (`2 + 2`) and should not display the result (`4`). If consecutive operator buttons are pressed, your calculator should not run any evaluations, it should only take the last operator entered to be used for the next operation.
+   - When a result is displayed, pressing a new digit should clear the result and start a new calculation instead of appending the digit to the existing result. Check whether this is the case on your calculator!
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+#### Extra credit
 
-## Test and Deploy
+- Users can get floating point numbers if they do the math required to get one, but they can't type them in yet. Add a `.` button and let users input decimals! Make sure you don't let them type more than one though, like: `12.3.56.5`. Disable the `.` button if there's already a decimal separator in the display.
+- Add a "backspace" button, so the user can undo their last input if they click the wrong number.
+- Add keyboard support!
 
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+</div>
