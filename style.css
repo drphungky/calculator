@@ -4,7 +4,7 @@
     outline: thin solid black;
     /* align-items: center; */
     flex: 1 1 auto;
-    height: 400px;
+    height: 600px;
     width: 400px;
     
 }
@@ -18,16 +18,23 @@
     flex-basis: 100%;
 }
 
-.line *  {
+.line div  {
     display: flex;
     outline: thin solid black;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 100%;
-    font-size: 48pt;
+    padding: 5px;
+}
+
+button {
+    align-items: stretch;
+    display: flex;
+    height: 100%;
+    flex: auto;
+    font-size: 58px;
     justify-content: center;
     align-items: center;
-    padding: 5px;
 }
 
 #add {
@@ -36,5 +43,7 @@
 
 #display {
     justify-content: right;
+    align-items: end;
+    font-size: 70px;
 }
 

@@ -1,3 +1,8 @@
+// Globals
+var body = document.querySelector("body");
+var display = document.querySelector("#display")
+
+
 function add(num1, num2){
     return num1 + num2;
 }
@@ -25,4 +30,14 @@ function operate(num1, num2, operator){
         case "/":
             return divide(num1, num2);
     }
+}
+
+
+
+function update_display(){
+    
+}
+
+function clear_display(){
+    display.textContent = "";
 }
