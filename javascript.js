@@ -2,6 +2,15 @@
 var body = document.querySelector("body");
 var display = document.querySelector("#display")
 
+// Attach Number functions to buttons
+var buttons = document.querySelectorAll("button")
+for (let i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener("click", (e) =>{
+        button_push(e);
+    });
+}
+
+
 
 function add(num1, num2){
     return num1 + num2;
@@ -32,16 +41,28 @@ function operate(num1, num2, operator){
     }
 }
 
-
-
-function update_display(user_input){
-    if (typeof(user_input) == "number") {
-        send_additional_number_to_display(user_input)
+function button_push(event){
+    // Parent divs that hold the buttons actually have the info
+    parent_classes = event.target.parentElement.classList;
+    console.log(event.target.parentElement.classList);
+    console.log(event.target.parentElement.id);
+    parent_id = event.target.parentElement.id;
+    
+    // If it's a number button
+    if (parent_classes.contains("number")){
+        send_additional_number_to_display(event.target.textContent);
     }
-    else if (user_input == "."){
+
+    //If it's .
+    else if (parent_id == "period"){
         send_decimal_to_display();
     }
+    //If it's clear
+    else if (parent_id == "clear"){
+        clear_display();
+    }
 }
+
 
 function send_additional_number_to_display(num){
     if (display.textContent==0) {
