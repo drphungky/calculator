@@ -61,8 +61,9 @@ button:active {
     margin-right: 20px;
     margin-bottom: 0;
     align-items: end;
-    font-size: 70px;
+    font-size: 65px;
     background-color:#c2c2a3;
+    font-family: "Consolas"
 ;
 }
 
