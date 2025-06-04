@@ -1,12 +1,13 @@
 #calculator {
     display: flex;
     flex-direction: column;
-    outline: thin solid black;
+    outline: thick solid black;
     /* align-items: center; */
     flex: 1 1 auto;
     height: 600px;
     width: 400px;
-    
+    background-color: beige;
+    border-radius: 12px;
 }
 
 .line {
@@ -35,15 +36,33 @@ button {
     font-size: 58px;
     justify-content: center;
     align-items: center;
+    background-color: lightgray;
+    border-radius: 12px;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+button:active {
+    background-color: darkgray;
 }
 
 #add {
     flex-basis: 200%;
 }
 
+
 #display {
     justify-content: right;
+    border: thick solid black;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0;
     align-items: end;
     font-size: 70px;
+    background-color:#c2c2a3;
+;
 }
 
