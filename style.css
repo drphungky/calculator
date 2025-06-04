@@ -34,3 +34,7 @@
     flex-basis: 200%;
 }
 
+#display {
+    justify-content: right;
+}
+
