@@ -65,7 +65,7 @@ function button_push(event){
 
 
 function send_additional_number_to_display(num){
-    if (display.textContent==0) {
+    if (display.textContent=="0") {
         display.textContent = num;
     }
     else {
