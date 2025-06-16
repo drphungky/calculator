@@ -15,6 +15,47 @@ for (let i = 0; i < buttons.length; i++){
     });
 }
 
+document.addEventListener("keydown", (event) => {
+    var valid_keys = ['1','2','3','4','5','6','7','8','9','0','Backspace','.'];
+    var operators = ['+','-','*','/'];
+    var equals = ["Enter",'='];
+    key = event.key;
+
+    if (operators.includes(key)){
+        switch(key){
+            case "+":
+                written_out_operator = "add";
+                break;
+            case "-":
+                written_out_operator = "subtract";
+                break;
+            case "/":
+                written_out_operator = "divide";
+                break;
+            case "*":
+                written_out_operator = "multiply";
+                break;
+        }
+        operator_pushed(written_out_operator);
+    }
+    else if (valid_keys.includes(key)){
+        if (key == "Backspace"){
+            backspace();
+        }
+        else if (key == "."){
+            send_decimal_to_display();
+        }
+        else {
+            send_additional_number_to_display(key);
+        }
+    }
+    else if (equals.includes(key)){
+        // Don't let enter click a previously selected button
+        event.target.blur();
+        equals_pushed();
+    }
+});
+
 
 
 function add(num1, num2){
@@ -146,7 +187,6 @@ function round_float(num){
 
     // Get number of spaces left for decimal (allow 1 extra for .)
     num_decimals_allowed = MAX_DIGITS_TO_DISPLAY - digits - 1;
-    console.log(num_decimals_allowed);
 
     // Eliminate overflow decimals
     if (num_decimals_allowed>0){
@@ -165,4 +205,8 @@ function round_float(num){
 function set_numbers_to_NaN(){
     number1 = NaN;
     number2 = NaN;
+}
+
+function backspace(){
+    display.textContent = display.textContent.slice(0,-1);
 }
