@@ -3,7 +3,7 @@ var body = document.querySelector("body");
 var display = document.querySelector("#display")
 var number1 = NaN;
 var number2 = NaN;
-var operator = "add";
+var operator = "";
 var clear_display_on_next_button_pushed = 0
 const MAX_DIGITS_TO_DISPLAY = 9;
 
@@ -118,8 +118,11 @@ function operator_pushed(pushed_operator){
 }
 
 function equals_pushed(){
-    solve_math();
-    clear_display_on_next_button_pushed = 1;
+    if (!isNaN(number1)){
+        solve_math();
+        clear_display_on_next_button_pushed = 1;
+    }
+
 }
 
 function solve_math(){
