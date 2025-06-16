@@ -42,7 +42,13 @@ function operate(num1, num2, operator){
         case "multiply":
             return multiply(num1, num2);
         case "divide":
-            return divide(num1, num2);
+            if (num2 == 0){
+                alert("Dividing by zero may lead to breaking reality...or at least this program.")
+                return num1;
+            }
+            else{
+                return divide(num1, num2);
+            }
     }
 }
 
