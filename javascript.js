@@ -5,6 +5,7 @@ var number1 = NaN;
 var number2 = NaN;
 var operator = "add";
 var clear_display_on_next_button_pushed = 0
+const MAX_DIGITS_TO_DISPLAY = 9;
 
 // Attach Number functions to buttons
 var buttons = document.querySelectorAll("button")
@@ -80,7 +81,7 @@ function send_additional_number_to_display(num){
         clear_display_on_next_button_pushed = 0;
     }
     else {
-        if (display.textContent.length < 9){
+        if (display.textContent.length < MAX_DIGITS_TO_DISPLAY){
             display.textContent += num;
         }
     }
@@ -123,10 +124,33 @@ function equals_pushed(){
 
 function solve_math(){
     number2 = display.textContent;
-    display.textContent = operate(Number(number1), Number(number2), operator);
+    answer = operate(Number(number1), Number(number2), operator);
+    answer = round_float(answer);
+    display.textContent = answer;
     set_numbers_to_NaN();
 }
 
+function round_float(num){
+    // Get number of non decimal digits
+    as_string = String(Math.floor(num));
+    digits = as_string.length;
+
+    // Get number of spaces left for decimal (allow 1 extra for .)
+    num_decimals_allowed = MAX_DIGITS_TO_DISPLAY - digits - 1;
+    console.log(num_decimals_allowed);
+
+    // Eliminate overflow decimals
+    if (num_decimals_allowed>0){
+        num = Number(num.toFixed(num_decimals_allowed));
+    }
+
+    // Switch to scientific notation if number too big
+    else if (digits>9) {
+        num = num.toExponential(3);
+    }
+
+    return num;
+}
 
 
 function set_numbers_to_NaN(){
