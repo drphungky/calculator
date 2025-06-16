@@ -15,6 +15,7 @@ for (let i = 0; i < buttons.length; i++){
     });
 }
 
+// Add keybaord support
 document.addEventListener("keydown", (event) => {
     var valid_keys = ['1','2','3','4','5','6','7','8','9','0','Backspace','.'];
     var operators = ['+','-','*','/'];
@@ -51,7 +52,7 @@ document.addEventListener("keydown", (event) => {
         }
     }
     else if (equals.includes(key)){
-        // Don't let enter click a previously selected button
+        // Don't let enter click a previously selected button (they stay selected)
         event.target.blur();
         equals_pushed();
     }
@@ -211,6 +212,7 @@ function set_numbers_to_NaN(){
     number2 = NaN;
 }
 
+// Delete a single character
 function backspace(){
     display.textContent = display.textContent.slice(0,-1);
 }
