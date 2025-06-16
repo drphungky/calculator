@@ -60,7 +60,7 @@ function button_push(event){
     }
     //If it's clear
     else if (parent_id == "clear"){
-        clear_display();
+        clear();
     }
     else if (parent_classes.contains("operator")){
         operator_pushed(parent_id);
@@ -87,9 +87,17 @@ function send_additional_number_to_display(num){
 }
 
 function send_decimal_to_display(){
+    if ((clear_display_on_next_button_pushed == 1)){
+        clear_display();
+    }
     if (display.textContent.search(/\./) == -1){
         display.textContent += ".";
     }
+}
+
+function clear(){
+    clear_display();
+    set_numbers_to_NaN();
 }
 
 function clear_display(){
@@ -97,9 +105,10 @@ function clear_display(){
 }
 
 function operator_pushed(pushed_operator){
-    if (isNaN(number1)){
-        number1 = display.textContent;
+    if (!isNaN(number1)){
+        solve_math();
     }
+    number1 = display.textContent;
 
     operator = pushed_operator;
 
@@ -108,9 +117,17 @@ function operator_pushed(pushed_operator){
 }
 
 function equals_pushed(){
+    solve_math();
+    clear_display_on_next_button_pushed = 1;
+}
+
+function solve_math(){
     number2 = display.textContent;
     display.textContent = operate(Number(number1), Number(number2), operator);
+    set_numbers_to_NaN();
 }
+
+
 
 function set_numbers_to_NaN(){
     number1 = NaN;
