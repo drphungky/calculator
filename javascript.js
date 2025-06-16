@@ -106,7 +106,7 @@ function clear_display(){
 }
 
 function operator_pushed(pushed_operator){
-    if (!isNaN(number1)){
+    if ((!isNaN(number1)) && (clear_display_on_next_button_pushed == 0)){
         solve_math();
     }
     number1 = display.textContent;
