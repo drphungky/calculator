@@ -19,6 +19,7 @@ document.addEventListener("keydown", (event) => {
     var valid_keys = ['1','2','3','4','5','6','7','8','9','0','Backspace','.'];
     var operators = ['+','-','*','/'];
     var equals = ["Enter",'='];
+    var to_clear = ["Delete"];
     key = event.key;
 
     if (operators.includes(key)){
@@ -53,6 +54,9 @@ document.addEventListener("keydown", (event) => {
         // Don't let enter click a previously selected button
         event.target.blur();
         equals_pushed();
+    }
+    else if (to_clear.includes(key)){
+        clear();
     }
 });
 
